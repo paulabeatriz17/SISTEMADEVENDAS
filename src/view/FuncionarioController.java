@@ -18,7 +18,8 @@ import javax.swing.table.AbstractTableModel;
 public class FuncionarioController extends AbstractTableModel{
     private List lista;
     public void setList(List lista){
-    this.lista = lista;
+      this.lista = lista;
+      this.fireTableDataChanged();
     }
 
     public FuncionarioPbt getBean (int row){
@@ -70,7 +71,7 @@ public class FuncionarioController extends AbstractTableModel{
             return "email";
         }
         if (column == 3 ) {
-            return "telefone";
+             return "telefone";
         }
         if (column == 4 ) {
             return "cpf";

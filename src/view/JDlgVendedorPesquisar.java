@@ -5,17 +5,31 @@
  */
 package view;
 
+import dao.UsuarioPbt_DAO;
+import java.util.List;
+import bean.VendedorPbt;
+import dao.VendedorPbt_DAO;
 /**
  *
  * @author Ever
  */
 public class JDlgVendedorPesquisar extends javax.swing.JFrame {
+    
+    VendedorController vendedorController;
+    VendedorPbt vendedor;
+    VendedorPbt_DAO vendedorDAO;
 
     /**
      * Creates new form JDlgVendedorPesquisar
      */
     public JDlgVendedorPesquisar() {
         initComponents();
+        
+        vendedorController = new VendedorController();
+        vendedorDAO = new VendedorPbt_DAO();
+        List lista = vendedorDAO.listAll();
+        vendedorController.setList(lista);
+        jTable1.setModel(vendedorController);
     }
 
     /**

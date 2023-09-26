@@ -311,7 +311,6 @@ public class JDlgUsuarios extends javax.swing.JDialog {
             usuarios = viewBean();
             usuariosDAO.delete(usuarios);
         } else {
-
             Util.mensagem("Exclusão cancelada.");
         }
 

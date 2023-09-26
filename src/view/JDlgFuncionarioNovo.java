@@ -6,6 +6,11 @@
 package view;
 
 import tools.Util;
+import bean.FuncionarioPbt;
+import dao.FuncionarioPbt_DAO;
+import java.util.List;
+
+
 
 /**
  *
@@ -13,11 +18,19 @@ import tools.Util;
  */
 public class JDlgFuncionarioNovo extends javax.swing.JFrame {
 
+    FuncionarioController funcController;
+    FuncionarioPbt func;
+    FuncionarioPbt_DAO funcDAO;       
     /**
      * Creates new form JDlgFuncionarioNovo
      */
     public JDlgFuncionarioNovo() {
         initComponents();
+        funcController = new FuncionarioController();
+        funcDAO = new FuncionarioPbt_DAO();
+        List lista = funcDAO.listAll();
+        funcController.setList(lista);
+        jTable1.setModel(funcController);
     }
 
     /**
@@ -118,8 +131,15 @@ public class JDlgFuncionarioNovo extends javax.swing.JFrame {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        if (Util.perguntar("Deseja excluir o usuario?") == true) {
-            //chamada metodo excluir
+        if (Util.perguntar("Deseja excluir o registro?") == true) {
+            int sel = jTable1.getSelectedRow();
+            func = funcController.getBean(sel);
+            funcDAO.delete(func);
+            //atualizar a lista no jtable
+            List lista = funcDAO.listAll();
+            funcController.setList(lista);
+        } else {
+            Util.mensagem("Exclusão cancelada.");
         }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 

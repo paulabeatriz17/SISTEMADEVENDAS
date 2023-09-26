@@ -6,6 +6,8 @@
 package view;
 
 import tools.Util;
+import bean.ClientePbt;
+import dao.ClientePbt_DAO;
 
 /**
  *
@@ -13,14 +15,40 @@ import tools.Util;
  */
 public class JDlgCliente extends javax.swing.JDialog {
 
+    private  boolean incluindo;
+    private ClientePbt cliente;
+    private ClientePbt_DAO clienteDAO;
     /**
      * Creates new form JDlgCliente
      */
     public JDlgCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt);
     }
-
+    
+    
+    
+     public ClientePbt viewBean() {
+        ClientePbt cliente = new ClientePbt();
+        cliente.setIdClientePbt(Util.strInt(idClientePbt.getText()));
+        cliente.setNomePbt(nomePbt.getText());
+        cliente.setApelidoPbt(apelidoPbt.getText());
+        cliente.setBarroPbt(barroPbt.getText());
+        cliente.setCelularPbt(celularPbt.getText());
+        cliente.setCpfPbt(cpf.getText());
+        cliente.setDadospagamentoPbt(dadospagamentoPbt.getText());
+        cliente.setDatanascimentoPbt(datanascimento.getText());
+        cliente.setEmailPbt(emailPbt.getText());
+        cliente.setPaisPbt(paisPbt.getText());
+        cliente.setRgPbt(rgPbt.getText());
+        cliente.setSexoPbt(sexoPbt.getText());
+        cliente.setTelefonePbt(telefonePbt.getText());
+        cliente.setCepPbt(cepPbt.getText());
+        cliente.setCidadePbt(cidadePbt.getText());
+        
+        return cliente;
+    }
  
 
     /**
@@ -75,7 +103,7 @@ public class JDlgCliente extends javax.swing.JDialog {
 
         jLabel16.setText("Código");
 
-        jLabel3.setText(" CPF");
+        jLabel3.setText("CPF");
 
         jLabel10.setText(" Celular");
 
@@ -226,7 +254,7 @@ public class JDlgCliente extends javax.swing.JDialog {
                             .addComponent(telefonePbt, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(celularPbt, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
@@ -341,7 +369,7 @@ public class JDlgCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
         Util.habilitar(true, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        boolean incluindo = true;
+        incluindo = true;
 
         Util.limparCampos(idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
@@ -349,7 +377,7 @@ public class JDlgCliente extends javax.swing.JDialog {
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
         Util.habilitar(true);
-        boolean incluindo = false;
+        incluindo = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
@@ -365,7 +393,14 @@ public class JDlgCliente extends javax.swing.JDialog {
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-
+        cliente = viewBean();
+        ClientePbt_DAO cliDAO = new ClientePbt_DAO();
+        System.out.println("objeto Cliente: " + cliente.getNomePbt());
+        if (incluindo == true) {
+            cliDAO.insert(cliente);
+        } else {
+            cliDAO.update(cliente);
+        }     
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -436,7 +471,9 @@ public class JDlgCliente extends javax.swing.JDialog {
                         System.exit(0);
                     }
                 });
+                
                 dialog.setVisible(true);
+                
             }
         });
     }

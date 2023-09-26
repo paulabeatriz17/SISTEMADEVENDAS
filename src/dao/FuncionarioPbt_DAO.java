@@ -21,25 +21,25 @@ public class FuncionarioPbt_DAO extends DAO_Abstract{
     public void insert(Object object) {
        session.beginTransaction();
       session.save(object);
-      session.beginTransaction().commit();
+      session.getTransaction().commit();
     }
 
     @Override
     public void update(Object object) {
-        session.beginTransaction();
+      session.beginTransaction();
       session.flush();
       session.clear();
       session.update(object);
-      session.beginTransaction().commit();
+      session.getTransaction().commit();
     }
 
     @Override
     public void delete(Object object) {
-         session.beginTransaction();
-          session.flush();
+      session.beginTransaction();
+      session.flush();
       session.clear();
       session.delete(object);
-      session.beginTransaction().commit();
+      session.getTransaction().commit();
     }
     
 

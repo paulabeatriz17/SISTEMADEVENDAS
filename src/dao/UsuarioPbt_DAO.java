@@ -30,7 +30,7 @@ public class UsuarioPbt_DAO extends DAO_Abstract{
       session.flush();
       session.clear();
       session.update(object);
-      session.beginTransaction().commit();
+      session.getTransaction().commit();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class UsuarioPbt_DAO extends DAO_Abstract{
           session.flush();
       session.clear();
       session.delete(object);
-      session.beginTransaction().commit();
+      session.getTransaction().commit();
     }
     
 

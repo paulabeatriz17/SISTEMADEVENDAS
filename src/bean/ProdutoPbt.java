@@ -39,14 +39,15 @@ public class ProdutoPbt  implements java.io.Serializable {
         this.valorPbt = valorPbt;
         this.categoriaPbt = categoriaPbt;
     }
+    /*
     public ProdutoPbt(int idprodutoPbt, String nomePbt, String descricaoPbt, String valorPbt, String categoriaPbt, Set vendaProdutoPbts) {
        this.idprodutoPbt = idprodutoPbt;
        this.nomePbt = nomePbt;
        this.descricaoPbt = descricaoPbt;
        this.valorPbt = valorPbt;
        this.categoriaPbt = categoriaPbt;
-      // this.vendaProdutoPbts = vendaProdutoPbts;
-    }
+       this.vendaProdutoPbts = vendaProdutoPbts;
+    }*/
    
      @Id 
 
@@ -100,7 +101,7 @@ public class ProdutoPbt  implements java.io.Serializable {
         this.categoriaPbt = categoriaPbt;
     }
 
-    /*
+/*    
 @OneToMany(fetch=FetchType.LAZY, mappedBy="produtoPbt")
     public Set getVendaProdutoPbts() {
         return this.vendaProdutoPbts;

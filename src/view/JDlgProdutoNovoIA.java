@@ -5,12 +5,21 @@
  */
 package view;
 
+import bean.ProdutoPbt;
+import dao.ProdutoPbt_DAO;
+import tools.Util;
+
+
 /**
  *
  * @author Ever
  */
 public class JDlgProdutoNovoIA extends javax.swing.JFrame {
-
+    
+    ProdutoPbt produto = new ProdutoPbt();
+    ProdutoPbt_DAO produtoDAO = new ProdutoPbt_DAO();
+    Boolean incluindo = true;
+    
     /**
      * Creates new form JDlgProdutoNovoIA
      */
@@ -18,6 +27,18 @@ public class JDlgProdutoNovoIA extends javax.swing.JFrame {
         initComponents();
     }
 
+    public ProdutoPbt viewBean(){
+             produto.setIdprodutoPbt(Util.strInt(idprodutoPbt.getText()));
+             produto.setDescricaoPbt(descricaoPbt.getText());
+             produto.setNomePbt(nomePbt.getText());
+             produto.setValorPbt(valorPbt.getText());
+             produto.setCategoriaPbt(categoriaPbt.getText());
+        return produto;
+    }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,8 +58,8 @@ public class JDlgProdutoNovoIA extends javax.swing.JFrame {
         categoriaPbt = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        joa_jBtnOk = new javax.swing.JButton();
-        joa_jBtnCancelar = new javax.swing.JButton();
+        jBtnOk_pbt = new javax.swing.JButton();
+        jBtnCancelar_pbt = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -68,23 +89,23 @@ public class JDlgProdutoNovoIA extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        joa_jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
-        joa_jBtnOk.setText("OK");
-        joa_jBtnOk.addActionListener(new java.awt.event.ActionListener() {
+        jBtnOk_pbt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
+        jBtnOk_pbt.setText("OK");
+        jBtnOk_pbt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                joa_jBtnOkActionPerformed(evt);
+                jBtnOk_pbtActionPerformed(evt);
             }
         });
-        jPanel1.add(joa_jBtnOk);
+        jPanel1.add(jBtnOk_pbt);
 
-        joa_jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
-        joa_jBtnCancelar.setText("CANCELAR");
-        joa_jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        jBtnCancelar_pbt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
+        jBtnCancelar_pbt.setText("CANCELAR");
+        jBtnCancelar_pbt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                joa_jBtnCancelarActionPerformed(evt);
+                jBtnCancelar_pbtActionPerformed(evt);
             }
         });
-        jPanel1.add(joa_jBtnCancelar);
+        jPanel1.add(jBtnCancelar_pbt);
 
         jLabel1.setText(" Codigo");
 
@@ -163,15 +184,21 @@ public class JDlgProdutoNovoIA extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nomePbtActionPerformed
 
-    private void joa_jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joa_jBtnOkActionPerformed
+    private void jBtnOk_pbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk_pbtActionPerformed
         setVisible(false);
+        produto = viewBean();
+        if (incluindo == true) {
+            produtoDAO.insert(produto);
+        } else {
+            produtoDAO.update(produto);
+        }
         // TODO add your handling code here:
-    }//GEN-LAST:event_joa_jBtnOkActionPerformed
+    }//GEN-LAST:event_jBtnOk_pbtActionPerformed
 
-    private void joa_jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joa_jBtnCancelarActionPerformed
+    private void jBtnCancelar_pbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelar_pbtActionPerformed
         setVisible(false);
         // TODO add your handling code here:
-    }//GEN-LAST:event_joa_jBtnCancelarActionPerformed
+    }//GEN-LAST:event_jBtnCancelar_pbtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,14 +239,14 @@ public class JDlgProdutoNovoIA extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField categoriaPbt;
     private javax.swing.JFormattedTextField descricaoPbt;
     private javax.swing.JTextField idprodutoPbt;
+    private javax.swing.JButton jBtnCancelar_pbt;
+    private javax.swing.JButton jBtnOk_pbt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton joa_jBtnCancelar;
-    private javax.swing.JButton joa_jBtnOk;
     private javax.swing.JTextField nomePbt;
     private javax.swing.JTextField valorPbt;
     // End of variables declaration//GEN-END:variables

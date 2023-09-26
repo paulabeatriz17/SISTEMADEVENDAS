@@ -115,6 +115,9 @@ public class JDlgUsuariosNovo extends javax.swing.JDialog {
         // TODO add your handling code here:        
         jDlgUsuariosNovoIA.setTitle("Inclusão");
         jDlgUsuariosNovoIA.setVisible(true);
+        List lista = usuariosDAO.listAll();
+        usuariosController.setList(lista);
+        jTable1.setModel(usuariosController);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed

@@ -47,11 +47,8 @@ public class Util {
    }
    
    public static boolean perguntar(String cadeia){
-       int resp = JOptionPane.showConfirmDialog(null, "Deseja excluir o registro?",
-               "Exclusão", JOptionPane.YES_NO_OPTION);
-       
-       JOptionPane.showConfirmDialog(null, cadeia, "Perguntar", JOptionPane.YES_NO_OPTION);
-       return false;
+        int resp = JOptionPane.showConfirmDialog(null, cadeia, "Perguntar", JOptionPane.YES_NO_OPTION);
+        return resp == JOptionPane.YES_OPTION;
    }
    
    public static int strInt(String cad){

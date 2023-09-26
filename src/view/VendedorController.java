@@ -7,7 +7,7 @@ package view;
  */
 
 
-import bean.FuncionarioPbt;
+
 import bean.VendedorPbt;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -38,21 +38,21 @@ public class VendedorController extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        FuncionarioPbt funcionarios =(FuncionarioPbt) lista.get(rowIndex);
+        VendedorPbt vendedor =(VendedorPbt) lista.get(rowIndex);
          if (columnIndex == 0 ) {
-            return funcionarios.getIdfuncionarioPbt();
+            return vendedor.getIdvendedorPbt();
         }
         if (columnIndex == 1 ) {
-            return funcionarios.getNome();
+            return vendedor.getNomePbt();
         }
         if (columnIndex == 2 ) {
-            return funcionarios.getEmail();
+            return vendedor.getEmailPbt();
         }
         if (columnIndex == 3 ) {
-            return funcionarios.getTelefone();
+            return vendedor.getTelefonePbt();
         }
         if (columnIndex == 4 ) {
-            return funcionarios.getCpf();  
+            return vendedor.getVendedorPbtcol();  
         }
 
  

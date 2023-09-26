@@ -22,19 +22,19 @@ public class JDlgVendedor extends javax.swing.JFrame {
      */
     public JDlgVendedor() {
         initComponents();
+         Util.habilitar(false, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
     }
     
         public VendedorPbt viewBean(){ 
         
-                VendedorPbt vendedorBean = new VendedorPbt();
-     
+                VendedorPbt vendedorBean = new VendedorPbt();     
                 vendedorBean.setIdvendedorPbt (Util.strInt(idvendedorPbt.getText()));
                 vendedorBean.setNomePbt(nomePbt.getText());
                 vendedorBean.setEmailPbt(emailPbt.getText());
                 vendedorBean.setTelefonePbt(telefonePbt.getText());
                 vendedorBean.setEnderecoPbt(enderecoPbt.getText());       
-                
-                
+                vendedorBean.setVendedorPbtcol(vendedorPbtcol.getText());
+               
                 return vendedorBean;
         }
 
@@ -251,7 +251,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_nomePbtActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-        Util.habilitar(true, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(true, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt);// TODO add your handling code here:
         incluindo = true;

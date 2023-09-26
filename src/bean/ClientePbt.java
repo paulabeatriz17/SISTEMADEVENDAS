@@ -107,7 +107,7 @@ public class ClientePbt  implements java.io.Serializable {
     }
 
     
-    @Column(name="telefone_pbt", nullable=false, length=45)
+    @Column(name="telefone_pbt", nullable=true, length=45)
     public String getTelefonePbt() {
         return this.telefonePbt;
     }

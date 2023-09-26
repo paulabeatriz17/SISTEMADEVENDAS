@@ -4,18 +4,34 @@
  * and open the template in the editor.
  */
 package view;
-
+import bean.FuncionarioPbt;
+import dao.FuncionarioPbt_DAO;
+import javax.swing.JTable;
+import tools.Util;
 /**
  *
  * @author Ever
  */
 public class FuncionarioNovoIA extends javax.swing.JFrame {
+    private FuncionarioPbt funcionario = new FuncionarioPbt();
+    private FuncionarioPbt_DAO funcionarioDAO = new FuncionarioPbt_DAO();
+    boolean incluindo = true;
 
     /**
      * Creates new form FuncionarioNovoIA
      */
     public FuncionarioNovoIA() {
         initComponents();
+    }
+    
+    public FuncionarioPbt viewBean(){
+        FuncionarioPbt func = new FuncionarioPbt();
+        func.setCpf(cpfPbt.getText());
+        func.setEmail(emailPbt.getText());
+        func.setIdfuncionarioPbt(Util.strInt(idfuncionarioPbt.getText()));
+        func.setNome(nomePbt.getText());
+        func.setTelefone(telefonePbt.getText());
+        return func;
     }
 
     /**
@@ -157,6 +173,13 @@ public class FuncionarioNovoIA extends javax.swing.JFrame {
 
     private void joa_jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joa_jBtnOkActionPerformed
         setVisible(false);
+        funcionario = viewBean();
+        if (incluindo==true){
+            funcionarioDAO.insert(funcionario);
+        }else{
+            funcionarioDAO.update(funcionario);
+        }
+       
         // TODO add your handling code here:
     }//GEN-LAST:event_joa_jBtnOkActionPerformed
 
