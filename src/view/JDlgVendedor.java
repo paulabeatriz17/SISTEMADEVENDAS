@@ -8,6 +8,13 @@ package view;
 import tools.Util;
 import dao.VendedorPbt_DAO;
 import bean.VendedorPbt;
+import javax.swing.text.MaskFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+ 
 
 /**
  *
@@ -17,13 +24,26 @@ public class JDlgVendedor extends javax.swing.JFrame {
     public VendedorPbt vendedor = new VendedorPbt();
     public VendedorPbt_DAO vendedorDAO = new VendedorPbt_DAO();
     private boolean incluindo;
+    MaskFormatter mascaratelefone;
+     
     /**
      * Creates new form JDlgVendedor
      */
     public JDlgVendedor() {
         initComponents();
-         Util.habilitar(false, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(false, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
+    
+    try {
+          mascaratelefone = new MaskFormatter("(##)#####-####");
+     
+
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }
+    
+    
     
         public VendedorPbt viewBean(){ 
         
@@ -253,13 +273,13 @@ public class JDlgVendedor extends javax.swing.JFrame {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         Util.habilitar(true, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt);// TODO add your handling code here:
+        Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol);// TODO add your handling code here:
         incluindo = true;
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        Util.habilitar(true, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(true, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt,vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
 
         incluindo = false; // TODO add your handling code here:
     }//GEN-LAST:event_jBtnAlterarActionPerformed
@@ -273,7 +293,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
 
             Util.mensagem("Exclusão cancelada");
         }
-        Util.limparCampos(idvendedorPbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, jBtnConfirmar, jBtnCancelar);    // TODO add your handling code here:
+        Util.limparCampos(idvendedorPbt, telefonePbt, emailPbt, nomePbt, enderecoPbt,vendedorPbtcol, jBtnConfirmar, jBtnCancelar);    // TODO add your handling code here:
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -284,9 +304,9 @@ public class JDlgVendedor extends javax.swing.JFrame {
             vendedorDAO.update(vendedor);
         }
 
-        Util.habilitar(false, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, jBtnConfirmar, jBtnExcluir);
+        Util.habilitar(false, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnConfirmar, jBtnExcluir);
         Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
-        Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt);  // TODO add your handling code here:
+        Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt,  vendedorPbtcol);  // TODO add your handling code here:
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -299,7 +319,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
         JDlgVendedorPesquisar jDlgVendedorPesquisar = new JDlgVendedorPesquisar();
         jDlgVendedorPesquisar.setTitle("Pesquisar Vendedor");
         jDlgVendedorPesquisar.setVisible(true);
-        Util.habilitar(false, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, jBtnConfirmar, jBtnExcluir);
+        Util.habilitar(false, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt,vendedorPbtcol, jBtnConfirmar, jBtnExcluir);
         Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jBtnAlterar);
         //transformou string em inteiro
 

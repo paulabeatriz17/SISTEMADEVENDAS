@@ -9,6 +9,7 @@ package dao;
 import bean.UsuarioPbt;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -57,7 +58,19 @@ public class UsuarioPbt_DAO extends DAO_Abstract{
     public List listAll() {
        session.beginTransaction();
         Criteria criteria = session.createCriteria(UsuarioPbt.class);
-         List lista = criteria.list();
+        List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
-}}
+}
+  
+    public List ListNome(String nome){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(UsuarioPbt.class);
+        criteria.add(Restrictions.ilike("nomepbt",nome , MatchMode.ANYWHERE ));
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
+    }
+}
+
+

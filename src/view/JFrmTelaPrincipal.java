@@ -144,7 +144,7 @@ public class JFrmTelaPrincipal extends javax.swing.JFrame {
 
     private void jMnuProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuProdutosActionPerformed
         // TODO add your handling code here:
-        JDlgProdutoNovo jDlgProduto = new JDlgProdutoNovo();
+        JDlgProdutoNovo jDlgProduto = new JDlgProdutoNovo(null,true);
         jDlgProduto.setVisible(true);
     }//GEN-LAST:event_jMnuProdutosActionPerformed
 

@@ -8,6 +8,12 @@ package view;
 import tools.Util;
 import bean.ClientePbt;
 import dao.ClientePbt_DAO;
+import javax.swing.text.MaskFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
 
 /**
  *
@@ -18,6 +24,7 @@ public class JDlgCliente extends javax.swing.JDialog {
     private  boolean incluindo;
     private ClientePbt cliente;
     private ClientePbt_DAO clienteDAO;
+    MaskFormatter mascaracep, mascaracpf,mascatadatanascimento, mascaratelefone, mascararg;
     /**
      * Creates new form JDlgCliente
      */
@@ -25,6 +32,30 @@ public class JDlgCliente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt);
+        Util.habilitar(true, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt);
+        setTitle("Cliente");
+        setLocationRelativeTo(null);
+        clienteDAO = new ClientePbt_DAO();
+        cliente= new ClientePbt();
+         
+         try {
+          mascaracpf = new MaskFormatter("###.###.###-##");
+          mascaracep = new MaskFormatter("#####-##");
+          mascatadatanascimento = new MaskFormatter("##/##/####");
+          mascaratelefone = new MaskFormatter("(##)#####-####");
+          mascararg = new MaskFormatter("#.###.###");
+
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
+        }
+    
+        cpf.setFormatterFactory(new DefaultFormatterFactory(mascaracpf));
+        telefonePbt.setFormatterFactory(new DefaultFormatterFactory(mascaratelefone));
+        cepPbt.setFormatterFactory(new DefaultFormatterFactory(mascaracep));
+        rgPbt.setFormatterFactory(new DefaultFormatterFactory(mascararg));
+    
     }
     
     
@@ -83,7 +114,6 @@ public class JDlgCliente extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jBtnExcluir = new javax.swing.JButton();
         barroPbt = new javax.swing.JTextField();
-        datanascimento = new javax.swing.JTextField();
         nomePbt = new javax.swing.JTextField();
         jBtnConfirmar = new javax.swing.JButton();
         paisPbt = new javax.swing.JTextField();
@@ -96,6 +126,7 @@ public class JDlgCliente extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         rgPbt = new javax.swing.JFormattedTextField();
         jBtnPesquisar = new javax.swing.JButton();
+        datanascimento = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -236,16 +267,16 @@ public class JDlgCliente extends javax.swing.JDialog {
                             .addComponent(jBtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBtnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel2)
                                 .addComponent(emailPbt, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                                 .addComponent(jLabel15)
                                 .addComponent(cepPbt))
-                            .addComponent(datanascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
-                            .addComponent(rgPbt, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
+                            .addComponent(rgPbt, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                            .addComponent(datanascimento))
+                        .addGap(88, 88, 88)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dadospagamentoPbt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
@@ -323,8 +354,8 @@ public class JDlgCliente extends javax.swing.JDialog {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(datanascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sexoPbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sexoPbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(datanascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -382,13 +413,18 @@ public class JDlgCliente extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        if (Util.perguntar("Deseja excluir o registro?") == true) {
-
-        } else {
+           if (Util.perguntar("Deseja excluir o registro?") == true){
+          cliente = viewBean();
+          clienteDAO.delete(cliente);
+       }
+       else {
+        
             Util.mensagem("Exclusão cancelada");
         }
-
-        Util.limparCampos(idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt);
+        Util.limparCampos(idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);  
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
+        Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar  );
+// TODO add your handling code here:
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -400,6 +436,10 @@ public class JDlgCliente extends javax.swing.JDialog {
             cliDAO.insert(cliente);
         } else {
             cliDAO.update(cliente);
+        Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
+        Util.limparCampos( idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);  // TODO add your handling code here:
+            
         }     
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
@@ -486,7 +526,7 @@ public class JDlgCliente extends javax.swing.JDialog {
     private javax.swing.JTextField cidadePbt;
     private javax.swing.JFormattedTextField cpf;
     private javax.swing.JTextField dadospagamentoPbt;
-    private javax.swing.JTextField datanascimento;
+    private javax.swing.JFormattedTextField datanascimento;
     private javax.swing.JFormattedTextField emailPbt;
     private javax.swing.JTextField idClientePbt;
     private javax.swing.JButton jBtnAlterar;

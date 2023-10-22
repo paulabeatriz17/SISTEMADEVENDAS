@@ -16,21 +16,28 @@ import java.util.List;
  *
  * @author Ever
  */
-public class JDlgFuncionarioNovo extends javax.swing.JFrame {
-
-    FuncionarioController funcController;
-    FuncionarioPbt func;
-    FuncionarioPbt_DAO funcDAO;       
+public class JDlgFuncionarioNovo extends javax.swing.JDialog{
+ 
+    JDlgFuncionarioNovoIA jDlgFuncionarioNovoIA;
+    FuncionarioController funcionarioController;
+    FuncionarioPbt_DAO funcionario_DAO;
+    FuncionarioPbt funcionario;      
     /**
      * Creates new form JDlgFuncionarioNovo
      */
-    public JDlgFuncionarioNovo() {
+    public JDlgFuncionarioNovo(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        funcController = new FuncionarioController();
-        funcDAO = new FuncionarioPbt_DAO();
-        List lista = funcDAO.listAll();
-        funcController.setList(lista);
-        jTable1.setModel(funcController);
+         jDlgFuncionarioNovoIA = new JDlgFuncionarioNovoIA(null, true);
+        setTitle("Cadastro de Funcionarios");
+        setLocationRelativeTo(null);
+        
+        funcionarioController = new FuncionarioController();
+        funcionario_DAO = new FuncionarioPbt_DAO();
+        
+       List lista = funcionario_DAO.listAll();
+       funcionarioController.setList(lista);
+        jTable1.setModel(funcionarioController);
     }
 
     /**
@@ -49,7 +56,7 @@ public class JDlgFuncionarioNovo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -116,31 +123,33 @@ public class JDlgFuncionarioNovo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-        // TODO add your handling code here:
-        FuncionarioNovoIA funcionarioNovoIA = new FuncionarioNovoIA();
-        funcionarioNovoIA.setTitle("Incluir");
-        funcionarioNovoIA.setVisible(true);
+        jDlgFuncionarioNovoIA.setTitle("Inclusão");
+        jDlgFuncionarioNovoIA.setVisible(true);
+        
+ List lista= funcionario_DAO.listAll();
+       funcionarioController.setList(lista);
+       jTable1.setModel(funcionarioController);
+       
+// TODO add your handling code here:
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        FuncionarioNovoIA funcionarioNovoIA = new FuncionarioNovoIA();
-        funcionarioNovoIA.setTitle("Alterar");
-        funcionarioNovoIA.setVisible(true);
+      
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        // TODO add your handling code here:
-        if (Util.perguntar("Deseja excluir o registro?") == true) {
-            int sel = jTable1.getSelectedRow();
-            func = funcController.getBean(sel);
-            funcDAO.delete(func);
-            //atualizar a lista no jtable
-            List lista = funcDAO.listAll();
-            funcController.setList(lista);
-        } else {
-            Util.mensagem("Exclusão cancelada.");
+    if (Util.perguntar("Deseja excluir o usuario?") == true){
+           int sel = jTable1.getSelectedRow();
+           funcionario = funcionarioController.getBean(sel);
+           funcionario_DAO.delete(funcionario);
+           //atulizar lista no jtable
+           List lista = funcionario_DAO.listAll();
+           funcionarioController.setList(lista);
+        } else{
+           Util.mensagem("Exclusão cancelada");
         }
+        // TODO add your handling code here:
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     /**
@@ -173,7 +182,14 @@ public class JDlgFuncionarioNovo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JDlgFuncionarioNovo().setVisible(true);
+                JDlgFuncionarioNovo dialog = new JDlgFuncionarioNovo(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

@@ -24,6 +24,7 @@ public class FuncionarioController extends AbstractTableModel{
 
     public FuncionarioPbt getBean (int row){
     return (FuncionarioPbt) lista.get(row);
+    
     }
     
     @Override
