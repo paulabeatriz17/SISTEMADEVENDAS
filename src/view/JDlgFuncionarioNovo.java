@@ -28,7 +28,7 @@ public class JDlgFuncionarioNovo extends javax.swing.JDialog{
     public JDlgFuncionarioNovo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         jDlgFuncionarioNovoIA = new JDlgFuncionarioNovoIA(null, true);
+        jDlgFuncionarioNovoIA = new JDlgFuncionarioNovoIA(null, true);
         setTitle("Cadastro de Funcionarios");
         setLocationRelativeTo(null);
         
@@ -139,7 +139,7 @@ public class JDlgFuncionarioNovo extends javax.swing.JDialog{
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-    if (Util.perguntar("Deseja excluir o usuario?") == true){
+        if (Util.perguntar("Deseja excluir o usuario?") == true){
            int sel = jTable1.getSelectedRow();
            funcionario = funcionarioController.getBean(sel);
            funcionario_DAO.delete(funcionario);

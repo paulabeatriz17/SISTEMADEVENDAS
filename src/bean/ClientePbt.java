@@ -57,7 +57,7 @@ public class ClientePbt  implements java.io.Serializable {
      @Id 
 
     
-    @Column(name="id cliente_pbt", unique=true, nullable=false)
+    @Column(name="idcliente_pbt", unique=true, nullable=false)
     public int getIdClientePbt() {
         return this.idClientePbt;
     }

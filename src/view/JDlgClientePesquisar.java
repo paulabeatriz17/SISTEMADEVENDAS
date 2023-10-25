@@ -5,17 +5,33 @@
  */
 package view;
 
+import bean.ClientePbt;
+import dao.ClientePbt_DAO;
+import java.util.List;
+import tools.Util;
+
 /**
  *
  * @author Ever
  */
 public class JDlgClientePesquisar extends javax.swing.JFrame {
-
+    ClienteController clienteController;
+    ClientePbt_DAO cliente_DAO;
+    ClientePbt cliente;  
     /**
      * Creates new form JDlgClientePesquisar
      */
     public JDlgClientePesquisar() {
         initComponents();
+        setTitle("Cadastro de Funcionarios");
+        setLocationRelativeTo(null);
+        
+        clienteController = new ClienteController();
+        cliente_DAO = new ClientePbt_DAO();
+        
+       List lista = cliente_DAO.listAll();
+       clienteController.setList(lista);
+        jTable2.setModel(clienteController);   
     }
 
     /**
@@ -29,64 +45,76 @@ public class JDlgClientePesquisar extends javax.swing.JFrame {
 
         jBtnCancelar = new javax.swing.JButton();
         jBtnOk = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jBtnCancelar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
-        jBtnCancelar.setText("CANCELAR");
+        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Excluir.png"))); // NOI18N
+        jBtnCancelar.setText("Excluir");
         jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnCancelarActionPerformed(evt);
             }
         });
 
-        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
-        jBtnOk.setText("OK");
+        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/incluir_1.png"))); // NOI18N
+        jBtnOk.setText("Incluir");
         jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnOkActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "NOME", "EMAIL", "CPF", "CEP", "TELEFONE", "RG", "DADOS P", "DATA N", "SEXO", "CIDADE", "BAIRRO", "CELULAR", "PAIS", "APELIDO"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jTable2);
+
+        jBtnCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar_1.png"))); // NOI18N
+        jBtnCancelar1.setText("Alterar");
+        jBtnCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelar1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(309, Short.MAX_VALUE)
+                .addGap(201, 201, 201)
                 .addComponent(jBtnOk)
-                .addGap(91, 91, 91)
+                .addGap(107, 107, 107)
+                .addComponent(jBtnCancelar1)
+                .addGap(105, 105, 105)
                 .addComponent(jBtnCancelar)
-                .addGap(416, 416, 416))
+                .addContainerGap(263, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnCancelar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
 
@@ -94,8 +122,16 @@ public class JDlgClientePesquisar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
+        if (Util.perguntar("Deseja excluir o usuario?") == true){
+           int sel = jTable2.getSelectedRow();
+           cliente = clienteController.getBean(sel);
+           cliente_DAO.delete(cliente);
+           //atulizar lista no jtable
+           List lista = cliente_DAO.listAll();
+           clienteController.setList(lista);
+        } else{
+           Util.mensagem("Exclusão cancelada");
+        }
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
@@ -104,7 +140,13 @@ public class JDlgClientePesquisar extends javax.swing.JFrame {
         //JoaCliente joaCliente = clientesControle.getBean(rowSel);
         //jDlgClientesNovo.beanView(joaCliente);
         setVisible(false);
+        JDlgCliente jdlgcliente = new JDlgCliente(null, true);
+        jdlgcliente.setVisible(true);
     }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void jBtnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnCancelar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,8 +185,13 @@ public class JDlgClientePesquisar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCancelar;
+    private javax.swing.JButton jBtnCancelar1;
     private javax.swing.JButton jBtnOk;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+
+    void setTelaAnterior(JDlgCliente aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

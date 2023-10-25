@@ -18,7 +18,8 @@ public class ClienteController extends AbstractTableModel {
     private List lista;
     
     public void setList(List lista){
-    this.lista = lista;
+        this.lista = lista;
+        this.fireTableDataChanged();
     }
     
     public ClientePbt getBean(int row){
@@ -43,72 +44,102 @@ public class ClienteController extends AbstractTableModel {
        ClientePbt cliente = (ClientePbt) lista.get(rowIndex);
         
         if (columnIndex == 0){
-    return cliente.getIdClientePbt();
-    }
+            return cliente.getIdClientePbt();
+        }
         if (columnIndex == 1){
-    return cliente.getNomePbt();
-    }
+            return cliente.getNomePbt();
+        }
         if (columnIndex == 2){
-    return  cliente.getEmailPbt();
-    }
+            return  cliente.getEmailPbt();
+        }
         if (columnIndex == 3){
-    return  cliente.getCpfPbt();
-    }
+            return  cliente.getCpfPbt();
+        }
         if (columnIndex == 4){
-    return cliente.getCepPbt();
-    }
+            return cliente.getCepPbt();
+        }
         if (columnIndex == 5){
-    return cliente.getTelefonePbt();
-    }
+            return cliente.getTelefonePbt();
+        }
         if (columnIndex == 6){
-    return cliente.getRgPbt();
-    }
+            return cliente.getRgPbt();
+        }
         if (columnIndex == 7){
-    return cliente.getDadospagamentoPbt();
-    }
+            return cliente.getDadospagamentoPbt();
+        }
         if (columnIndex == 8){
-    return cliente.getDatanascimentoPbt();
-    }
-         if (columnIndex == 9){
-    return cliente.getSexoPbt();
-    }
-          if (columnIndex == 10){
-    return cliente .getCidadePbt();
-    }
-          if (columnIndex == 11){
-    return cliente.getBarroPbt();
-    }
-          if (columnIndex == 12){
-    return cliente.getCelularPbt();
-    }
-          if (columnIndex == 13){
-    return cliente.getPaisPbt();
-    }
-          if (columnIndex == 14){
-    return cliente.getApelidoPbt();
-    }
+            return cliente.getDatanascimentoPbt();
+        }
+        if (columnIndex == 9){
+            return cliente.getSexoPbt();
+        }
+        if (columnIndex == 10){
+            return cliente .getCidadePbt();
+        }
+        if (columnIndex == 11){
+            return cliente.getBarroPbt();
+        }
+        if (columnIndex == 12){
+            return cliente.getCelularPbt();
+        }
+        if (columnIndex == 13){
+            return cliente.getPaisPbt();
+        }
+        if (columnIndex == 14){
+            return cliente.getApelidoPbt();
+        }
         return "";
     
     
     }
     @Override
     public String getColumnName(int column){
-    if (column == 0){
-    return "ID";
-    }
-    if (column == 1){
-    return "Nome";
-    }
-    if (column == 2){
-    return "Apelido";
-    }
-    if (column == 3){
-    return "CPF";
-    }
-    if (column == 4){
-    return "Senha";
-    }
-    return "";
-    
+        if (column == 0){
+            return "ID";
+        }
+        if (column == 1){
+            return "Nome";
+        }
+        if (column == 2){
+            return "Email";
+        }
+        if (column == 3){
+            return "CPF";
+        }
+        if (column == 4){
+            return "CEP";
+        }
+        if (column == 5){
+            return "Telefone";
+        }
+        if (column == 6){
+            return "RG";
+        }
+        if (column == 7){
+            return "Dados Pgt";
+        }
+        if (column == 8){
+            return "Data Nascimento";
+        }
+        if (column == 9){
+            return "Sexo";
+        }
+        if (column == 10){
+            return "Cidade";
+        }
+        if (column == 11){
+            return "Bairo";
+        }
+        if (column == 12){
+            return "Celular";
+        }
+        if (column == 13){
+            return "Pais";
+        }
+        if (column == 14){
+            return "Apelido";
+        }
+        return "";
+
     }
 }

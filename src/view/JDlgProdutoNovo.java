@@ -27,11 +27,14 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
         super(parent,modal);
         initComponents();
         jDlgProdutoNovoIA = new JDlgProdutoNovoIA(null, true);   
-        setTitle ("Cadastro");
+        setTitle ("Cadastro Produto");
         setLocationRelativeTo(null);
     
         produtoController = new ProdutoController();
         produto_DAO = new ProdutoPbt_DAO();
+        List lista = produto_DAO.listAll();
+        produtoController.setList(lista);
+        jTable1.setModel(produtoController);
    
     }
     /**
@@ -119,8 +122,10 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
         jDlgProdutoNovoIA.setTitle("Inclusão");
         jDlgProdutoNovoIA.setVisible(true);
+        
         
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 

@@ -24,7 +24,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
     public VendedorPbt vendedor = new VendedorPbt();
     public VendedorPbt_DAO vendedorDAO = new VendedorPbt_DAO();
     private boolean incluindo;
-    MaskFormatter mascaratelefone;
+    MaskFormatter mascaratelefone,mascaracpf;
      
     /**
      * Creates new form JDlgVendedor
@@ -32,15 +32,19 @@ public class JDlgVendedor extends javax.swing.JFrame {
     public JDlgVendedor() {
         initComponents();
         Util.habilitar(false, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
-    
+        setTitle("Cadastro de Vendedor");
     try {
           mascaratelefone = new MaskFormatter("(##)#####-####");
-     
+          mascaracpf = new MaskFormatter("###.###.###-##");
 
         } catch (ParseException ex) {
             Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+      
+        telefonePbt.setFormatterFactory(new DefaultFormatterFactory(mascaratelefone));
+        vendedorPbtcol.setFormatterFactory(new DefaultFormatterFactory(mascaracpf));
+  
+        
     }
     
     
@@ -165,7 +169,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
 
         jLabel2.setText("Email");
 
-        jLabel6.setText(" CNPJ");
+        jLabel6.setText(" CPF");
 
         vendedorPbtcol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,7 +309,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
         }
 
         Util.habilitar(false, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnConfirmar, jBtnExcluir);
-        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar,jBtnPesquisar);
         Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt,  vendedorPbtcol);  // TODO add your handling code here:
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
@@ -313,8 +317,11 @@ public class JDlgVendedor extends javax.swing.JFrame {
         Util.habilitar(false);
         Util.mensagem("Cancelamento concluido");
         Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt);
+        Util.habilitar(false, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(true, jBtnIncluir,jBtnAlterar, jBtnPesquisar);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
+    
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         JDlgVendedorPesquisar jDlgVendedorPesquisar = new JDlgVendedorPesquisar();
         jDlgVendedorPesquisar.setTitle("Pesquisar Vendedor");

@@ -9,6 +9,8 @@ import dao.UsuarioPbt_DAO;
 import java.util.List;
 import bean.VendedorPbt;
 import dao.VendedorPbt_DAO;
+import javax.swing.table.DefaultTableModel;
+import tools.Util;
 /**
  *
  * @author Ever
@@ -18,6 +20,8 @@ public class JDlgVendedorPesquisar extends javax.swing.JFrame {
     VendedorController vendedorController;
     VendedorPbt vendedor;
     VendedorPbt_DAO vendedorDAO;
+    DefaultTableModel model = new DefaultTableModel();
+   
 
     /**
      * Creates new form JDlgVendedorPesquisar
@@ -45,6 +49,7 @@ public class JDlgVendedorPesquisar extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jBtnCancelar = new javax.swing.JButton();
         jBtnOk = new javax.swing.JButton();
+        jBtnOk1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -69,11 +74,19 @@ public class JDlgVendedorPesquisar extends javax.swing.JFrame {
             }
         });
 
-        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
-        jBtnOk.setText("OK");
+        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Excluir.png"))); // NOI18N
+        jBtnOk.setText("Excluir");
         jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnOkActionPerformed(evt);
+            }
+        });
+
+        jBtnOk1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar_1.png"))); // NOI18N
+        jBtnOk1.setText("Alterar");
+        jBtnOk1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnOk1ActionPerformed(evt);
             }
         });
 
@@ -85,12 +98,14 @@ public class JDlgVendedorPesquisar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jBtnOk)
-                        .addGap(45, 45, 45)
+                        .addGap(130, 130, 130)
+                        .addComponent(jBtnOk1)
+                        .addGap(49, 49, 49)
                         .addComponent(jBtnCancelar)
+                        .addGap(26, 26, 26)
+                        .addComponent(jBtnOk)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -98,11 +113,12 @@ public class JDlgVendedorPesquisar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(211, Short.MAX_VALUE))
+                    .addComponent(jBtnOk1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,12 +130,22 @@ public class JDlgVendedorPesquisar extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-        // TODO add your handling code here:
-        //int  rowSel = jTable1.getSelectedRow();
-        //JoaCliente joaCliente = clientesControle.getBean(rowSel);
-        //jDlgClientesNovo.beanView(joaCliente);
-        setVisible(false);
+        if (Util.perguntar("Deseja excluir o registro?") == true) {
+            int sel = jTable1.getSelectedRow();
+            vendedor = vendedorController.getBean(sel);
+            vendedorDAO.delete(vendedor);
+            //atualizar a lista no jtable
+            List lista = vendedorDAO.listAll();
+            vendedorController.setList(lista);
+            jTable1.setModel(vendedorController);
+        } else {
+            Util.mensagem("Exclusão cancelada.");
+        }
     }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void jBtnOk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnOk1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,6 +185,7 @@ public class JDlgVendedorPesquisar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnOk;
+    private javax.swing.JButton jBtnOk1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

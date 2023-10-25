@@ -17,25 +17,22 @@ public class ProdutoController extends AbstractTableModel {
      private List lista;
      
     public void setList(List lista){
-    this.lista = lista;
-     this.fireTableDataChanged();
+       this.lista = lista;
+       this.fireTableDataChanged();
     }
     
     public ProdutoPbt getBean(int row){
-    return (ProdutoPbt) lista.get(row);
-    
+        return (ProdutoPbt) lista.get(row);
     }
     
     @Override
     public int getRowCount() {
        return lista.size();
-       
     }
 
     @Override
     public int getColumnCount() {
-        return 5;
-        
+        return 5;    
     }
 
     @Override

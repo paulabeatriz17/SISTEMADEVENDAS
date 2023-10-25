@@ -41,6 +41,17 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
         produto.setCategoriaPbt(jTxtCategoriaPbt.getText());
         return produto;
     }
+        
+    public void BeanView(){
+         
+        jTxtIdPbt.setText(Util.intStr(produto.getIdprodutoPbt()));
+        jTxtDescricao.setText(produto.getDescricaoPbt());
+        jTxtNomePbt.setText(produto.getNomePbt());
+        jTxtvalorPbt.setText(produto.getValorPbt());
+        jTxtCategoriaPbt.setText(produto.getCategoriaPbt());
+     
+     
+    }
     
     
     
@@ -76,7 +87,8 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok_1.png"))); // NOI18N
-        jBtnOk.setText("Ok");
+        jBtnOk.setText("Salvar");
+        jBtnOk.setActionCommand("Salvar");
         jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnOkActionPerformed(evt);
@@ -154,13 +166,13 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTxtvalorPbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                        .addComponent(jTxtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -198,12 +210,12 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         setVisible(false);
         produto = viewBean();
-
         produto_DAO = new ProdutoPbt_DAO();
-
         produto_DAO.insert(produto);
-
         Util.limparCampos();
+        setVisible(false);
+        JDlgProdutoNovo jdlgProduto = new JDlgProdutoNovo(null, true);
+        jdlgProduto.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnOkActionPerformed
 

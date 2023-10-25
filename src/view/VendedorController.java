@@ -19,7 +19,8 @@ import javax.swing.table.AbstractTableModel;
 public class VendedorController extends AbstractTableModel{
     private List lista;
     public void setList(List lista){
-    this.lista = lista;
+     this.lista = lista;
+     this.fireTableDataChanged();
     }
 
     public VendedorPbt getBean (int row){
