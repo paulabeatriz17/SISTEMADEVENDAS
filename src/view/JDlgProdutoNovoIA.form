@@ -37,7 +37,7 @@
                                       <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTxtvalorPbt" min="-2" pref="231" max="-2" attributes="0"/>
+                                      <Component id="valorPbt" min="-2" pref="231" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jTxtDescricao" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
                                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -84,9 +84,8 @@
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" max="32767" attributes="0"/>
-                          <Component id="jTxtvalorPbt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="valorPbt" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace pref="17" max="32767" attributes="0"/>
@@ -111,7 +110,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtNomePbt">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxtvalorPbt">
+    <Component class="javax.swing.JTextField" name="valorPbt">
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
@@ -132,7 +131,6 @@
               <Image iconType="3" name="/imagens/ok_1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salvar"/>
-            <Property name="actionCommand" type="java.lang.String" value="Salvar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnOkActionPerformed"/>

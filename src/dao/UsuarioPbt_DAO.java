@@ -70,6 +70,18 @@ public class UsuarioPbt_DAO extends DAO_Abstract{
         List results = criteria.list();
         session.getTransaction().commit();
         return results;
+        
+    }
+    
+    
+    public List ListNivel(String nivel){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(UsuarioPbt.class);
+        criteria.add(Restrictions.ilike("nivelpbt",nivel , MatchMode.ANYWHERE ));
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
+        
     }
 }
 

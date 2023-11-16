@@ -56,10 +56,10 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         usuarios.setNomePbt(jTxtNome.getText());
         usuarios.setNicknamePbt(jTxtApelido.getText());
         usuarios.setCpfPbt(jFmtCpf.getText());
-        usuarios.setDataNascimentoPbt(jFmtDataDeNascimento.getText());
+        usuarios.setDataNascimentoPbt(Util.strDate(jFmtDataDeNascimento.getText()));
         usuarios.setSenhaPbt(jPwfSenha.getText());
-        usuarios.setNivelPbt(Util.intStr(jCboNivel.getSelectedIndex()));
-        usuarios.setAtivoPbt( jChbAtivo.isSelected() == true ? "S" : "N");
+        usuarios.setNivelPbt(jCboNivel.getSelectedIndex());
+        usuarios.setAtivoPbt( jChbAtivo.isSelected() == true ? 1 : 0);
         
 //        if (jChbAtivo.isSelected() == true) {
 //            usuarios.setAtivo("S");
@@ -69,6 +69,26 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         return usuarios;
     }
 
+        public UsuarioPbt beanView() {
+            UsuarioPbt usuarios = new UsuarioPbt();
+            jTxtCodigo.setText(Util.intStr(usuarios.getIdusuarioPbt()));
+            jTxtNome.setText(usuarios.getNomePbt());
+            jTxtApelido.setText(usuarios.getNicknamePbt());
+            jFmtCpf.setText(usuarios.getCpfPbt());
+            jFmtDataDeNascimento.setText(Util.dateStr(usuarios.getDataNascimentoPbt()));
+            usuarios.setSenhaPbt(jPwfSenha.getText());
+            jCboNivel.setSelectedIndex(usuarios.getNivelPbt());
+            jCboNivel.setSelectedIndex(usuarios.getNivelPbt());
+            jChbAtivo.setSelected(usuarios.getAtivoPbt() == 1 ? true : false);
+            
+
+        return usuarios;
+    }
+        
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

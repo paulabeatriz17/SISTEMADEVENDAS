@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/log4j.xml</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/query/JDlgConsultaVendedor.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/bean/UsuarioPbt.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/JDlgProdutoNovo.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/bean/VendaPbt.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/JDlgVendedor.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/dao/VendedorPbt_DAO.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/JDlgProdutoNovoIA.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/dao/FuncionarioPbt_DAO.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/tools/Util.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/JDlgUsuariosNovo.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/bean/VendedorPbt.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/bean/ClientePbt.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/JDlgFuncionarioNovo.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/query/JDlgConsultaProduto.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/JDlgFuncionarioNovoIA.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/dao/ClientePbt_DAO.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/JDlgUsuarios.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/query/JDlgConsultaUsuario.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/JDlgCliente.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/bean/VendaProdutoPbt.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/javax/persistence/Decimal.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/VendedorController.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/FuncionarioController.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/JDlgUsuariosNovoIA.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/query/JDlgConsultaCliente.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/dao/ProdutoPbt_DAO.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/hibernate.cfg.xml</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/JDlgClientePesquisar.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/query/JDlgConsultaFuncionario.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/dao/UsuarioPbt_DAO.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/dao/VendaProdutoPbt_DAO.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/view/ClienteController.java</file>
+            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/sistemaTeste/src/bean/ProdutoPbt.java</file>
+        </group>
+    </open-files>
+</project-private>

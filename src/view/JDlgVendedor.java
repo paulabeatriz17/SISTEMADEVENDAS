@@ -31,7 +31,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
      */
     public JDlgVendedor() {
         initComponents();
-        Util.habilitar(false, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(false, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, CBsexoPbt, jBtnCancelar, jBtnConfirmar);
         setTitle("Cadastro de Vendedor");
     try {
           mascaratelefone = new MaskFormatter("(##)#####-####");
@@ -42,7 +42,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
         }
       
         telefonePbt.setFormatterFactory(new DefaultFormatterFactory(mascaratelefone));
-        vendedorPbtcol.setFormatterFactory(new DefaultFormatterFactory(mascaracpf));
+        
   
         
     }
@@ -57,7 +57,20 @@ public class JDlgVendedor extends javax.swing.JFrame {
                 vendedorBean.setEmailPbt(emailPbt.getText());
                 vendedorBean.setTelefonePbt(telefonePbt.getText());
                 vendedorBean.setEnderecoPbt(enderecoPbt.getText());       
-                vendedorBean.setVendedorPbtcol(vendedorPbtcol.getText());
+                vendedorBean.setsexo(CBsexoPbt.getSelectedIndex());
+               
+                return vendedorBean;
+        }
+        
+        public VendedorPbt beanView(){ 
+        
+                VendedorPbt vendedorBean = new VendedorPbt();     
+                idvendedorPbt.setText(Util.intStr(vendedor.getIdvendedorPbt()) );
+                nomePbt.setText(vendedor.getNomePbt());
+                emailPbt.setText(vendedor.getEmailPbt()) ;
+                telefonePbt.setText(vendedor.getTelefonePbt());
+                enderecoPbt.setText(vendedor.getEnderecoPbt() );       
+                CBsexoPbt.setSelectedIndex(vendedor.getsexo());
                
                 return vendedorBean;
         }
@@ -89,7 +102,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
         jBtnPesquisar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        vendedorPbtcol = new javax.swing.JFormattedTextField();
+        CBsexoPbt = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -169,13 +182,9 @@ public class JDlgVendedor extends javax.swing.JFrame {
 
         jLabel2.setText("Email");
 
-        jLabel6.setText(" CPF");
+        jLabel6.setText("Sexo");
 
-        vendedorPbtcol.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vendedorPbtcolActionPerformed(evt);
-            }
-        });
+        CBsexoPbt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,12 +227,9 @@ public class JDlgVendedor extends javax.swing.JFrame {
                     .addComponent(nomePbt, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(CBsexoPbt, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(vendedorPbtcol, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,8 +256,8 @@ public class JDlgVendedor extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vendedorPbtcol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telefonePbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(telefonePbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CBsexoPbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnIncluir)
@@ -275,15 +281,15 @@ public class JDlgVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_nomePbtActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-        Util.habilitar(true, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(true, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, CBsexoPbt, jBtnCancelar, jBtnConfirmar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol);// TODO add your handling code here:
+        Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, CBsexoPbt);// TODO add your handling code here:
         incluindo = true;
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        Util.habilitar(true, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt,vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(true, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt,CBsexoPbt, jBtnCancelar, jBtnConfirmar);
 
         incluindo = false; // TODO add your handling code here:
     }//GEN-LAST:event_jBtnAlterarActionPerformed
@@ -297,7 +303,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
 
             Util.mensagem("Exclusão cancelada");
         }
-        Util.limparCampos(idvendedorPbt, telefonePbt, emailPbt, nomePbt, enderecoPbt,vendedorPbtcol, jBtnConfirmar, jBtnCancelar);    // TODO add your handling code here:
+        Util.limparCampos(idvendedorPbt, telefonePbt, emailPbt, nomePbt, enderecoPbt,CBsexoPbt, jBtnConfirmar, jBtnCancelar);    // TODO add your handling code here:
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -308,16 +314,16 @@ public class JDlgVendedor extends javax.swing.JFrame {
             vendedorDAO.update(vendedor);
         }
 
-        Util.habilitar(false, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnConfirmar, jBtnExcluir);
+        Util.habilitar(false, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, CBsexoPbt, jBtnConfirmar, jBtnExcluir);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar,jBtnPesquisar);
-        Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt,  vendedorPbtcol);  // TODO add your handling code here:
+        Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, enderecoPbt,  CBsexoPbt);  // TODO add your handling code here:
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         Util.habilitar(false);
         Util.mensagem("Cancelamento concluido");
         Util.limparCampos(idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt);
-        Util.habilitar(false, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, vendedorPbtcol, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(false, idvendedorPbt,  nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt, CBsexoPbt, jBtnCancelar, jBtnConfirmar);
         Util.habilitar(true, jBtnIncluir,jBtnAlterar, jBtnPesquisar);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
@@ -326,7 +332,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
         JDlgVendedorPesquisar jDlgVendedorPesquisar = new JDlgVendedorPesquisar();
         jDlgVendedorPesquisar.setTitle("Pesquisar Vendedor");
         jDlgVendedorPesquisar.setVisible(true);
-        Util.habilitar(false, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt,vendedorPbtcol, jBtnConfirmar, jBtnExcluir);
+        Util.habilitar(false, idvendedorPbt, nomePbt, telefonePbt, emailPbt, nomePbt, enderecoPbt,CBsexoPbt, jBtnConfirmar, jBtnExcluir);
         Util.habilitar(true, jBtnConfirmar, jBtnCancelar, jBtnAlterar);
         //transformou string em inteiro
 
@@ -339,10 +345,6 @@ public class JDlgVendedor extends javax.swing.JFrame {
     private void emailPbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailPbtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailPbtActionPerformed
-
-    private void vendedorPbtcolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendedorPbtcolActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_vendedorPbtcolActionPerformed
 
     private void enderecoPbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enderecoPbtActionPerformed
         // TODO add your handling code here:
@@ -384,6 +386,7 @@ public class JDlgVendedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBsexoPbt;
     private javax.swing.JTextField emailPbt;
     private javax.swing.JTextField enderecoPbt;
     private javax.swing.JTextField idvendedorPbt;
@@ -401,6 +404,5 @@ public class JDlgVendedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JFormattedTextField nomePbt;
     private javax.swing.JFormattedTextField telefonePbt;
-    private javax.swing.JFormattedTextField vendedorPbtcol;
     // End of variables declaration//GEN-END:variables
 }

@@ -55,4 +55,29 @@ public class ProdutoPbt_DAO extends DAO_Abstract{
          List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
-}}
+        
+    }
+        
+        public List listNome(String cpf){
+        
+         session.beginTransaction();
+    Criteria crit = session.createCriteria(ProdutoPbt.class);
+        String nome = null;
+crit.add(Restrictions.like("nomePbt", "%"+nome+"%"));
+List lista = crit.list();
+  session.getTransaction().commit();
+return lista;
+    
+    }
+      public List listValor(String valor){
+        
+         session.beginTransaction();
+    Criteria crit = session.createCriteria(ProdutoPbt.class);
+    crit.add(Restrictions.ge("valorPbt", valor));
+crit.add(Restrictions.like("valorPbt", "%"+valor+"%"));
+List lista = crit.list();
+  session.getTransaction().commit();
+return lista;
+    
+    }
+}

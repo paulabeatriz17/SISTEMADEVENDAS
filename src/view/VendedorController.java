@@ -53,7 +53,7 @@ public class VendedorController extends AbstractTableModel{
             return vendedor.getTelefonePbt();
         }
         if (columnIndex == 4 ) {
-            return vendedor.getVendedorPbtcol();  
+            return vendedor.getsexo();  
         }
 
  

@@ -37,17 +37,17 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
         produto.setIdprodutoPbt(Util.strInt(jTxtIdPbt.getText()));
         produto.setDescricaoPbt(jTxtDescricao.getText());
         produto.setNomePbt(jTxtNomePbt.getText());
-        produto.setValorPbt(jTxtvalorPbt.getText());
+        produto.setValorPbt(Util.strDouble(valorPbt.getText()));
         produto.setCategoriaPbt(jTxtCategoriaPbt.getText());
         return produto;
     }
         
-    public void BeanView(){
+    public void BeanView( ProdutoPbt produto){
          
         jTxtIdPbt.setText(Util.intStr(produto.getIdprodutoPbt()));
         jTxtDescricao.setText(produto.getDescricaoPbt());
         jTxtNomePbt.setText(produto.getNomePbt());
-        jTxtvalorPbt.setText(produto.getValorPbt());
+        valorPbt.setText(Util.doubleStr(produto.getValorPbt()));
         jTxtCategoriaPbt.setText(produto.getCategoriaPbt());
      
      
@@ -68,7 +68,7 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jTxtDescricao = new javax.swing.JTextField();
         jTxtNomePbt = new javax.swing.JTextField();
-        jTxtvalorPbt = new javax.swing.JTextField();
+        valorPbt = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jBtnOk = new javax.swing.JButton();
         jBtnCancelar = new javax.swing.JButton();
@@ -88,7 +88,6 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
 
         jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok_1.png"))); // NOI18N
         jBtnOk.setText("Salvar");
-        jBtnOk.setActionCommand("Salvar");
         jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnOkActionPerformed(evt);
@@ -131,7 +130,7 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
                                         .addGap(163, 163, 163)
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTxtvalorPbt, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(valorPbt, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jTxtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4)
                                     .addGroup(layout.createSequentialGroup()
@@ -165,8 +164,7 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTxtvalorPbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(valorPbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addComponent(jLabel3)
@@ -282,6 +280,6 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
     private javax.swing.JTextField jTxtDescricao;
     private javax.swing.JTextField jTxtIdPbt;
     private javax.swing.JTextField jTxtNomePbt;
-    private javax.swing.JTextField jTxtvalorPbt;
+    private javax.swing.JTextField valorPbt;
     // End of variables declaration//GEN-END:variables
 }

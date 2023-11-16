@@ -47,7 +47,7 @@ public class ClientePbt_DAO extends DAO_Abstract{
     public Object list(int id) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ClientePbt.class);
-        criteria.add(Restrictions.eq("drfIdcompraProduto", id));
+        criteria.add(Restrictions.eq("IdcompraProduto", id));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
@@ -60,4 +60,28 @@ public class ClientePbt_DAO extends DAO_Abstract{
          List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
-}}
+    }  
+        
+    public List listCpf(String cpf){
+        
+    session.beginTransaction();
+    Criteria crit = session.createCriteria(ClientePbt.class);
+    crit.add(Restrictions.like("CpfPbt", "%"+cpf+"%"));
+    List lista = crit.list();
+    session.getTransaction().commit();
+    return lista;
+    
+    }
+    
+    
+  public List listRg(String Rg){   
+  session.beginTransaction();
+  Criteria crit = session.createCriteria(ClientePbt.class);
+        String rg = null;
+  crit.add(Restrictions.like("RgPbt", "%"+rg+"%"));
+  List lista = crit.list();
+  session.getTransaction().commit();
+  return lista;
+    
+    }
+     }

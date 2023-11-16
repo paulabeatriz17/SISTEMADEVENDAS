@@ -60,4 +60,31 @@ public class VendedorPbt_DAO extends DAO_Abstract{
          List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
-}}
+}
+
+   public List listNome(String nome){
+        
+         session.beginTransaction();
+    Criteria crit = session.createCriteria(VendedorPbt.class);
+crit.add(Restrictions.like("Nome", "%"+nome+"%"));
+List lista = crit.list();
+  session.getTransaction().commit();
+return lista;
+    
+    }
+      public List ListTelefone(String telefone ){
+        
+         session.beginTransaction();
+    Criteria crit = session.createCriteria(VendedorPbt.class);
+    crit.add(Restrictions.ge("telefonePbt", telefone));
+    crit.add(Restrictions.like("TelefonePbt", "%"+telefone+"%"));
+    List lista = crit.list();
+    session.getTransaction().commit();
+    return lista;
+    
+    }
+
+
+
+
+}

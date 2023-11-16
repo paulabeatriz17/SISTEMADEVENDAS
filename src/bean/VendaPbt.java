@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,28 +24,28 @@ public class VendaPbt  implements java.io.Serializable {
 
      private int idvendaPbt;
      private String dataPbt;
-     private String totalPbt;
+     private Double totalPbt;
      private String formapagamentoPbt;
-     private String statusvendaPbt;
+     private VendedorPbt vendedorPbt;
      //private Set vendaProdutoPbts = new HashSet(0);
 
     public VendaPbt() {
     }
 
 	
-    public VendaPbt(int idvendaPbt, String dataPbt, String totalPbt, String formapagamentoPbt, String statusvendaPbt) {
+    public VendaPbt(int idvendaPbt, String dataPbt, Double totalPbt, String formapagamentoPbt, int idvendedor) {
         this.idvendaPbt = idvendaPbt;
         this.dataPbt = dataPbt;
         this.totalPbt = totalPbt;
         this.formapagamentoPbt = formapagamentoPbt;
-        this.statusvendaPbt = statusvendaPbt;
+        this.vendedorPbt = vendedorPbt;
     }
-    public VendaPbt(int idvendaPbt, String dataPbt, String totalPbt, String formapagamentoPbt, String statusvendaPbt, Set vendaProdutoPbts) {
+    public VendaPbt(int idvendaPbt, String dataPbt, Double totalPbt, String formapagamentoPbt, int idvendedor, Set vendaProdutoPbts) {
        this.idvendaPbt = idvendaPbt;
        this.dataPbt = dataPbt;
        this.totalPbt = totalPbt;
        this.formapagamentoPbt = formapagamentoPbt;
-       this.statusvendaPbt = statusvendaPbt;
+       this.vendedorPbt = vendedorPbt;
        //this.vendaProdutoPbts = vendaProdutoPbts;
     }
    
@@ -72,11 +73,11 @@ public class VendaPbt  implements java.io.Serializable {
 
     
     @Column(name="total_pbt", nullable=false, length=45)
-    public String getTotalPbt() {
+    public Double getTotalPbt() {
         return this.totalPbt;
     }
     
-    public void setTotalPbt(String totalPbt) {
+    public void setTotalPbt(Double totalPbt) {
         this.totalPbt = totalPbt;
     }
 
@@ -90,14 +91,14 @@ public class VendaPbt  implements java.io.Serializable {
         this.formapagamentoPbt = formapagamentoPbt;
     }
 
-    
-    @Column(name="statusvenda_pbt", nullable=false, length=45)
-    public String getStatusvendaPbt() {
-        return this.statusvendaPbt;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @Column(name="vendedorPbt", nullable=false)
+    public VendedorPbt getvendedorPbt() {
+        return this. vendedorPbt = vendedorPbt;
     }
     
-    public void setStatusvendaPbt(String statusvendaPbt) {
-        this.statusvendaPbt = statusvendaPbt;
+    public void setvendedorPbt(int statusvendaPbt) {
+        this.vendedorPbt = vendedorPbt;
     }
 /*
 @OneToMany(fetch=FetchType.LAZY, mappedBy="vendaPbt")

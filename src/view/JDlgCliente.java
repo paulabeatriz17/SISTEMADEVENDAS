@@ -31,7 +31,7 @@ public class JDlgCliente extends javax.swing.JDialog {
     public JDlgCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt);
+        Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimentopbt, apelidoPbt, paisPbt, barroPbt, cepPbt, SexoPbt, celularPbt, rgPbt, cidadePbt);
         //Util.habilitar(true, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt);
         setTitle("Cliente");
         setLocationRelativeTo(null);
@@ -55,7 +55,7 @@ public class JDlgCliente extends javax.swing.JDialog {
         telefonePbt.setFormatterFactory(new DefaultFormatterFactory(mascaratelefone));
         cepPbt.setFormatterFactory(new DefaultFormatterFactory(mascaracep));
         rgPbt.setFormatterFactory(new DefaultFormatterFactory(mascararg));
-        datanascimento.setFormatterFactory(new DefaultFormatterFactory(mascaradatanascimento));
+        datanascimentopbt.setFormatterFactory(new DefaultFormatterFactory(mascaradatanascimento));
         celularPbt.setFormatterFactory(new DefaultFormatterFactory(mascaratelefone));
         
     
@@ -72,14 +72,35 @@ public class JDlgCliente extends javax.swing.JDialog {
         cliente.setCelularPbt(celularPbt.getText());
         cliente.setCpfPbt(cpf.getText());
         cliente.setDadospagamentoPbt(dadospagamentoPbt.getText());
-        cliente.setDatanascimentoPbt(datanascimento.getText());
+        cliente.setDatanascimentoPbt(Util.strDate(datanascimentopbt.getText()));
         cliente.setEmailPbt(emailPbt.getText());
         cliente.setPaisPbt(paisPbt.getText());
         cliente.setRgPbt(rgPbt.getText());
-        cliente.setSexoPbt(sexoPbt.getText());
+        cliente.setSexoPbt(SexoPbt.getSelectedIndex());
         cliente.setTelefonePbt(telefonePbt.getText());
         cliente.setCepPbt(cepPbt.getText());
         cliente.setCidadePbt(cidadePbt.getText());
+        
+        return cliente;
+    }
+     
+       public ClientePbt beanView() {
+        ClientePbt cliente = new ClientePbt();
+        idClientePbt.setText(Util.intStr(cliente.getIdClientePbt()));
+        nomePbt.setText(cliente.getNomePbt());
+        apelidoPbt.setText(cliente.getApelidoPbt());
+        barroPbt.setText(cliente.getBarroPbt());
+        celularPbt.setText(cliente.getCelularPbt());
+        cpf.setText(cliente.getCpfPbt());
+        dadospagamentoPbt.setText(cliente.getDadospagamentoPbt());
+        datanascimentopbt.setText(Util.dateStr(cliente.getDatanascimentoPbt()));
+        emailPbt.setText(cliente.getEmailPbt()); ;
+        paisPbt.setText(cliente.getPaisPbt());
+        rgPbt.setText(cliente.getRgPbt());
+        SexoPbt.setSelectedIndex(cliente.getSexoPbt());
+        telefonePbt.setText(cliente.getTelefonePbt());
+        cepPbt.setText(cliente.getCepPbt());
+        cidadePbt.setText(cliente.getCidadePbt());
         
         return cliente;
     }
@@ -119,17 +140,17 @@ public class JDlgCliente extends javax.swing.JDialog {
         nomePbt = new javax.swing.JTextField();
         jBtnConfirmar = new javax.swing.JButton();
         paisPbt = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jBtnCancelar = new javax.swing.JButton();
         emailPbt = new javax.swing.JFormattedTextField();
-        sexoPbt = new javax.swing.JFormattedTextField();
         telefonePbt = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
         rgPbt = new javax.swing.JFormattedTextField();
         jBtnPesquisar = new javax.swing.JButton();
-        datanascimento = new javax.swing.JFormattedTextField();
+        datanascimentopbt = new javax.swing.JFormattedTextField();
         celularPbt = new javax.swing.JFormattedTextField();
+        SexoPbt = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -213,8 +234,6 @@ public class JDlgCliente extends javax.swing.JDialog {
             }
         });
 
-        jLabel7.setText(" Sexo");
-
         jLabel2.setText(" Email");
 
         jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
@@ -222,12 +241,6 @@ public class JDlgCliente extends javax.swing.JDialog {
         jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnCancelarActionPerformed(evt);
-            }
-        });
-
-        sexoPbt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sexoPbtActionPerformed(evt);
             }
         });
 
@@ -252,6 +265,15 @@ public class JDlgCliente extends javax.swing.JDialog {
                 celularPbtActionPerformed(evt);
             }
         });
+
+        SexoPbt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Prefiro não especificar" }));
+        SexoPbt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SexoPbtActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("Sexo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -283,17 +305,17 @@ public class JDlgCliente extends javax.swing.JDialog {
                             .addComponent(cepPbt)
                             .addComponent(jLabel8)
                             .addComponent(rgPbt, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                            .addComponent(datanascimento))
+                            .addComponent(datanascimentopbt))
                         .addGap(88, 88, 88)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dadospagamentoPbt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(sexoPbt, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
                             .addComponent(telefonePbt, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13)
+                            .addComponent(SexoPbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(apelidoPbt, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
@@ -359,11 +381,11 @@ public class JDlgCliente extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sexoPbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datanascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(datanascimentopbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SexoPbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -406,11 +428,11 @@ public class JDlgCliente extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt);
+        Util.habilitar(true, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimentopbt, apelidoPbt, paisPbt, barroPbt, cepPbt, SexoPbt, celularPbt, rgPbt, cidadePbt);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         incluindo = true;
 
-        Util.limparCampos(idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);
+        Util.limparCampos(idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimentopbt, apelidoPbt, paisPbt, barroPbt, cepPbt, SexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
@@ -429,9 +451,9 @@ public class JDlgCliente extends javax.swing.JDialog {
         
             Util.mensagem("Exclusão cancelada");
         }
-        Util.limparCampos(idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);  
+        Util.limparCampos(idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimentopbt, apelidoPbt, paisPbt, barroPbt, cepPbt, SexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);  
         Util.habilitar(true, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar  );
+        Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimentopbt, apelidoPbt, paisPbt, barroPbt, cepPbt, SexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar  );
 // TODO add your handling code here:
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
@@ -446,9 +468,9 @@ public class JDlgCliente extends javax.swing.JDialog {
         } else {
             cliDAO.update(cliente);   
         }
-        Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimentopbt, apelidoPbt, paisPbt, barroPbt, cepPbt, SexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        Util.limparCampos( idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);
+        Util.limparCampos(idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimentopbt, apelidoPbt, paisPbt, barroPbt, cepPbt, SexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -456,8 +478,8 @@ public class JDlgCliente extends javax.swing.JDialog {
         Util.habilitar(false);
         Util.mensagem("Cancelamento concluido");  
         Util.habilitar(true, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
-        Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);
-        Util.limparCampos(idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimento, apelidoPbt, paisPbt, barroPbt, cepPbt, sexoPbt, celularPbt, rgPbt, cidadePbt);
+        Util.habilitar(false, idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimentopbt, apelidoPbt, paisPbt, barroPbt, cepPbt, SexoPbt, celularPbt, rgPbt, cidadePbt, jBtnConfirmar, jBtnCancelar);
+        Util.limparCampos(idClientePbt, nomePbt, cpf, emailPbt, dadospagamentoPbt, telefonePbt, datanascimentopbt, apelidoPbt, paisPbt, barroPbt, cepPbt, SexoPbt, celularPbt, rgPbt, cidadePbt);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
@@ -474,10 +496,6 @@ public class JDlgCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cepPbtActionPerformed
 
-    private void sexoPbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexoPbtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sexoPbtActionPerformed
-
     private void telefonePbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonePbtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_telefonePbtActionPerformed
@@ -489,6 +507,10 @@ public class JDlgCliente extends javax.swing.JDialog {
     private void celularPbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_celularPbtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_celularPbtActionPerformed
+
+    private void SexoPbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SexoPbtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SexoPbtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -535,6 +557,7 @@ public class JDlgCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> SexoPbt;
     private javax.swing.JTextField apelidoPbt;
     private javax.swing.JTextField barroPbt;
     private javax.swing.JFormattedTextField celularPbt;
@@ -542,7 +565,7 @@ public class JDlgCliente extends javax.swing.JDialog {
     private javax.swing.JTextField cidadePbt;
     private javax.swing.JFormattedTextField cpf;
     private javax.swing.JTextField dadospagamentoPbt;
-    private javax.swing.JFormattedTextField datanascimento;
+    private javax.swing.JFormattedTextField datanascimentopbt;
     private javax.swing.JFormattedTextField emailPbt;
     private javax.swing.JTextField idClientePbt;
     private javax.swing.JButton jBtnAlterar;
@@ -555,6 +578,7 @@ public class JDlgCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -563,13 +587,11 @@ public class JDlgCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField nomePbt;
     private javax.swing.JTextField paisPbt;
     private javax.swing.JFormattedTextField rgPbt;
-    private javax.swing.JFormattedTextField sexoPbt;
     private javax.swing.JFormattedTextField telefonePbt;
     // End of variables declaration//GEN-END:variables
 }

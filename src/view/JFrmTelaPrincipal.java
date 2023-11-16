@@ -16,7 +16,7 @@ public class JFrmTelaPrincipal extends javax.swing.JFrame {
      */
     public JFrmTelaPrincipal() {
          initComponents();
-        setTitle("Sistema de Venda de Materiais de Artesanato");
+        setTitle("Sistema de Venda");
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -177,8 +177,7 @@ public class JFrmTelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        JDlgFuncionarioNovo jdlgFuncionario = new JDlgFuncionarioNovo(null, true);
-        jdlgFuncionario.setVisible(true);
+         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

@@ -3,53 +3,41 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package query;
-import bean.UsuarioPbt;
-import java.lang.String;
-import dao.UsuarioPbt_DAO;
+ package query;
+
+import bean.ProdutoPbt;
+import dao.ProdutoPbt_DAO;
 import java.util.List;
 import tools.Util;
-import view.JDlgUsuarios;
+import view.ProdutoController;
 import view.UsuariosController;
 
 /**
  *
- * @author u10154925179
+ * @author rafae
  */
-public class JDlgConsultaUsuario extends javax.swing.JDialog {
-private JDlgUsuarios jDlgUsuarios;
- UsuarioPbt_DAO usuarios_DAO;
- UsuariosController usuariosControle;
-    /**
-     * Creates new form JDlgConsultaUsuarios
-     */
-/**
- *
- * @author paula
- */
- 
+public class JDlgConsultaProduto extends javax.swing.JDialog {
 
-    /**
-     * Creates new form JDlgConsultaUsuario
+      /**
+     * Creates new form JDlgConsultaProdutos
      */
-    public JDlgConsultaUsuario(java.awt.Frame parent, boolean modal) {
-       super(parent, modal);
-         initComponents();
-         setTitle("Consulta de Usuarios");
+    public ProdutoPbt produto;
+    public ProdutoPbt_DAO DAO;
+    ProdutoController Controller;
+    
+    public JDlgConsultaProduto(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        
+        DAO = new ProdutoPbt_DAO();
+        Controller = new ProdutoController();    
+        List lista = DAO.listAll();
+        Controller.setList(lista);
+        jTable1.setModel(Controller);
+        
+        setTitle("Consulta de Produtos");
         setLocationRelativeTo(null);
-        
-        usuarios_DAO = new UsuarioPbt_DAO();
-        usuariosControle = new UsuariosController();    
-        List lista = usuarios_DAO.listAll();
-        usuariosControle.setList(lista);
-        jTable1.setModel(usuariosControle);
-        
-        setTitle("Consulta de Usuarios");
-        setLocationRelativeTo(null);
-       
-        
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,7 +54,7 @@ private JDlgUsuarios jDlgUsuarios;
         jLabel1 = new javax.swing.JLabel();
         jTxtNomePbt = new javax.swing.JTextField();
         jBtnConsultar = new javax.swing.JButton();
-        jTxtNivelPbt = new javax.swing.JTextField();
+        jTxtValorPbt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -86,7 +74,7 @@ private JDlgUsuarios jDlgUsuarios;
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setText("Nome");
+        jLabel1.setText(" Nome");
 
         jBtnConsultar.setText("CONSULTAR");
         jBtnConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +83,7 @@ private JDlgUsuarios jDlgUsuarios;
             }
         });
 
-        jLabel2.setText("Nivel");
+        jLabel2.setText(" Valor");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,8 +96,8 @@ private JDlgUsuarios jDlgUsuarios;
                 .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTxtNivelPbt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                        .addComponent(jTxtValorPbt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnConsultar)
                         .addGap(34, 34, 34))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -119,17 +107,14 @@ private JDlgUsuarios jDlgUsuarios;
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTxtNomePbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnConsultar)
-                    .addComponent(jTxtNivelPbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtValorPbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 13, Short.MAX_VALUE))
         );
 
@@ -137,42 +122,39 @@ private JDlgUsuarios jDlgUsuarios;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
-       if(!jTxtNomePbt.getText().equals("")){
-            List lista= usuarios_DAO.ListNome (jTxtNomePbt.getText());
-            usuariosControle.setList(lista);
+    if(!jTxtNomePbt.getText().equals("")){
+            List lista= DAO.listNome (jTxtNomePbt.getText());
+            Controller.setList(lista);
         } else{
             if (jTxtNomePbt.getText().equals("") && jTxtNomePbt.getText().equals("")){
-                List list =  usuarios_DAO.ListNome( jTxtNomePbt.getText()  );
-                usuariosControle.setList(list);
+                List list =  DAO.listNome( jTxtNomePbt.getText()  );
+                Controller.setList(list);
             }}
-            if (jTxtNivelPbt.getText().equals("")&& jTxtNivelPbt.getText().equals("") ){
-                List lista = usuarios_DAO.ListNivel (jTxtNivelPbt.getText());
-                usuariosControle .setList(lista);
+            if (jTxtValorPbt.getText().equals("")&& jTxtValorPbt.getText().equals("") ){
+                List lista = DAO.listValor (jTxtValorPbt.getText());
+                Controller .setList(lista);
             }
 
             else{
-                if (!jTxtNivelPbt.getText().equals("")){
-                    List lista =  usuarios_DAO.ListNivel (jTxtNivelPbt.getText());
-                   usuariosControle.setList(lista);
+                if (!jTxtValorPbt.getText().equals("")){
+                    List lista =  DAO.listValor (jTxtValorPbt.getText());
+                    Controller.setList(lista);
                 }}
     }//GEN-LAST:event_jBtnConsultarActionPerformed
 
@@ -193,20 +175,20 @@ private JDlgUsuarios jDlgUsuarios;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgConsultaUsuario dialog = new JDlgConsultaUsuario(new javax.swing.JFrame(), true);
+                JDlgConsultaProduto dialog = new JDlgConsultaProduto(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -225,7 +207,7 @@ private JDlgUsuarios jDlgUsuarios;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTxtNivelPbt;
     private javax.swing.JTextField jTxtNomePbt;
+    private javax.swing.JTextField jTxtValorPbt;
     // End of variables declaration//GEN-END:variables
 }

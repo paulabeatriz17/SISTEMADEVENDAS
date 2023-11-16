@@ -24,7 +24,7 @@ public class ProdutoPbt  implements java.io.Serializable {
      private int idprodutoPbt;
      private String nomePbt;
      private String descricaoPbt;
-     private String valorPbt;
+     private Double valorPbt;
      private String categoriaPbt;
     // private Set vendaProdutoPbts = new HashSet(0);
 
@@ -32,7 +32,7 @@ public class ProdutoPbt  implements java.io.Serializable {
     }
 
 	
-    public ProdutoPbt(int idprodutoPbt, String nomePbt, String descricaoPbt, String valorPbt, String categoriaPbt) {
+    public ProdutoPbt(int idprodutoPbt, String nomePbt, String descricaoPbt, Double valorPbt, String categoriaPbt) {
         this.idprodutoPbt = idprodutoPbt;
         this.nomePbt = nomePbt;
         this.descricaoPbt = descricaoPbt;
@@ -83,11 +83,11 @@ public class ProdutoPbt  implements java.io.Serializable {
 
     
     @Column(name="valor_pbt", nullable=false, length=45)
-    public String getValorPbt() {
+    public Double getValorPbt() {
         return this.valorPbt;
     }
     
-    public void setValorPbt(String valorPbt) {
+    public void setValorPbt(Double valorPbt) {
         this.valorPbt = valorPbt;
     }
 

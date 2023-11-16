@@ -2,6 +2,7 @@ package bean;
 // Generated 22/09/2023 07:47:46 by Hibernate Tools 4.3.1
 
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,8 +26,8 @@ public class ClientePbt  implements java.io.Serializable {
      private String telefonePbt;
      private String rgPbt;
      private String dadospagamentoPbt;
-     private String datanascimentoPbt;
-     private String sexoPbt;
+     private Date datanascimentoPbt;
+     private int sexoPbt;
      private String cidadePbt;
      private String barroPbt;
      private String celularPbt;
@@ -36,7 +37,7 @@ public class ClientePbt  implements java.io.Serializable {
     public ClientePbt() {
     }
 
-    public ClientePbt(int idClientePbt, String nomePbt, String emailPbt, String cpfPbt, String cepPbt, String telefonePbt, String rgPbt, String dadospagamentoPbt, String datanascimentoPbt, String sexoPbt, String cidadePbt, String barroPbt, String celularPbt, String paisPbt, String apelidoPbt) {
+    public ClientePbt(int idClientePbt, String nomePbt, String emailPbt, String cpfPbt, String cepPbt, String telefonePbt, String rgPbt, String dadospagamentoPbt, Date datanascimentoPbt, int sexoPbt, String cidadePbt, String barroPbt, String celularPbt, String paisPbt, String apelidoPbt) {
        this.idClientePbt = idClientePbt;
        this.nomePbt = nomePbt;
        this.emailPbt = emailPbt;
@@ -138,21 +139,21 @@ public class ClientePbt  implements java.io.Serializable {
 
     
     @Column(name="datanascimento_pbt", nullable=false, length=45)
-    public String getDatanascimentoPbt() {
+    public Date getDatanascimentoPbt() {
         return this.datanascimentoPbt;
     }
     
-    public void setDatanascimentoPbt(String datanascimentoPbt) {
+    public void setDatanascimentoPbt(Date datanascimentoPbt) {
         this.datanascimentoPbt = datanascimentoPbt;
     }
 
     
     @Column(name="sexo_pbt", nullable=false, length=45)
-    public String getSexoPbt() {
+    public int getSexoPbt() {
         return this.sexoPbt;
     }
     
-    public void setSexoPbt(String sexoPbt) {
+    public void setSexoPbt(int sexoPbt) {
         this.sexoPbt = sexoPbt;
     }
 

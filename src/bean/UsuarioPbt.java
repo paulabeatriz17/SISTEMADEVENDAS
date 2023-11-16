@@ -2,6 +2,7 @@ package bean;
 // Generated 22/09/2023 07:47:46 by Hibernate Tools 4.3.1
 
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,15 +22,15 @@ public class UsuarioPbt  implements java.io.Serializable {
      private String nomePbt;
      private String nicknamePbt;
      private String cpfPbt;
-     private String dataNascimentoPbt;
+     private Date dataNascimentoPbt;
      private String senhaPbt;
-     private String nivelPbt;
-     private String ativoPbt;
+     private int nivelPbt;
+     private int ativoPbt;
 
     public UsuarioPbt() {
     }
 
-    public UsuarioPbt(int idusuarioPbt, String nomePbt, String nicknamePbt, String cpfPbt, String dataNascimentoPbt, String senhaPbt, String nivelPbt, String ativoPbt) {
+    public UsuarioPbt(int idusuarioPbt, String nomePbt, String nicknamePbt, String cpfPbt, Date dataNascimentoPbt, String senhaPbt, int nivelPbt, int ativoPbt) {
        this.idusuarioPbt = idusuarioPbt;
        this.nomePbt = nomePbt;
        this.nicknamePbt = nicknamePbt;
@@ -84,11 +85,11 @@ public class UsuarioPbt  implements java.io.Serializable {
 
     
     @Column(name="dataNascimento_pbt", nullable=false, length=45)
-    public String getDataNascimentoPbt() {
+    public Date getDataNascimentoPbt() {
         return this.dataNascimentoPbt;
     }
     
-    public void setDataNascimentoPbt(String dataNascimentoPbt) {
+    public void setDataNascimentoPbt(Date dataNascimentoPbt) {
         this.dataNascimentoPbt = dataNascimentoPbt;
     }
 
@@ -104,21 +105,21 @@ public class UsuarioPbt  implements java.io.Serializable {
 
     
     @Column(name="nivel_pbt", nullable=false, length=45)
-    public String getNivelPbt() {
+    public int getNivelPbt() {
         return this.nivelPbt;
     }
     
-    public void setNivelPbt(String nivelPbt) {
+    public void setNivelPbt(int nivelPbt) {
         this.nivelPbt = nivelPbt;
     }
 
     
     @Column(name="ativo_pbt", nullable=false, length=45)
-    public String getAtivoPbt() {
+    public int getAtivoPbt() {
         return this.ativoPbt;
     }
     
-    public void setAtivoPbt(String ativoPbt) {
+    public void setAtivoPbt(int ativoPbt) {
         this.ativoPbt = ativoPbt;
     }
 

@@ -22,18 +22,18 @@ public class VendedorPbt  implements java.io.Serializable {
      private String emailPbt;
      private String telefonePbt;
      private String enderecoPbt;
-     private String vendedorPbtcol;
+     private int sexo;
 
     public VendedorPbt() {
     }
 
-    public VendedorPbt(int idvendedorPbt, String nomePbt, String emailPbt, String telefonePbt, String enderecoPbt, String vendedorPbtcol) {
+    public VendedorPbt(int idvendedorPbt, String nomePbt, String emailPbt, String telefonePbt, String enderecoPbt, int sexo) {
        this.idvendedorPbt = idvendedorPbt;
        this.nomePbt = nomePbt;
        this.emailPbt = emailPbt;
        this.telefonePbt = telefonePbt;
        this.enderecoPbt = enderecoPbt;
-       this.vendedorPbtcol = vendedorPbtcol;
+       this.sexo = sexo;
     }
    
      @Id 
@@ -89,13 +89,13 @@ public class VendedorPbt  implements java.io.Serializable {
     }
 
     
-    @Column(name="vendedor_pbtcol", nullable=false, length=45)
-    public String getVendedorPbtcol() {
-        return this.vendedorPbtcol;
+    @Column(name="sexo", nullable=false, length=45)
+    public int getsexo() {
+        return this.sexo;
     }
     
-    public void setVendedorPbtcol(String vendedorPbtcol) {
-        this.vendedorPbtcol = vendedorPbtcol;
+    public void setsexo(int sexo) {
+        this.sexo = sexo;
     }
 
 
